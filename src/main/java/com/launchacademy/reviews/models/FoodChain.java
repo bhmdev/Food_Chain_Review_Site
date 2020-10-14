@@ -33,6 +33,13 @@ public class FoodChain {
   @Column(nullable = false)
   private String name;
 
+  @Column(columnDefinition = "NUMERIC(2,1)" )
+  private Double rating;
+
+  @NotNull
+  @Column(nullable = false)
+  private Boolean delivery;
+
   @Column
   private Double rating;
 
