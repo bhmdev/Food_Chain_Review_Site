@@ -13,11 +13,9 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.maven.plugins.annotations.Component;
 
 @Entity
 @Getter
