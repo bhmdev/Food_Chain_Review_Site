@@ -35,7 +35,7 @@ public class FoodChain {
   @Column(nullable = false)
   private String name;
 
-  @Column
+  @Column(columnDefinition = "NUMERIC(2,1)")
   private Double rating;
 
   @NotNull
