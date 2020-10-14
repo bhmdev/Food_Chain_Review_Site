@@ -6,24 +6,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-//need to import models and repositories up here
+
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/foodchains")
 public class FoodChainsRestController {
     private FoodChainRepository foodChainRepository;
+
     @Autowired
     public FoodChainRestController(
             FoodChainRepository foodChainRepository) {
         this.foodChainRepository = foodChainRepository;
     }
-    @GetMapping("/foodchains")
+
+    @GetMapping
     public Iterable<FoodChain> displayFoodChains() { return foodChainRepository.findAll(); }
-    @GetMapping("/foodchains/{id}")
+
+    @GetMapping("/{id}")
     public ResponseEntity showOneFoodChain(@PathVariable Integer id) {
-        if (foodChainRepository.findById(id).isEmpty()) {
+        Optional<FoodChain> foodChain = foodChainRepository.findById(id);
+        if (foodChain.isEmpty()) { //reference
             return new ResponseEntity(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity(foodChainRepository.findById(id).get(), HttpStatus.OK);
+        } else { //reference
+            return new ResponseEntity(foodChain.get(), HttpStatus.OK);
         }
     }
 }
