@@ -13,7 +13,7 @@ public class FoodChainsRestController {
     private FoodChainRepository foodChainRepository;
 
     @Autowired
-    public FoodChainRestController(
+    public FoodChainsRestController(
             FoodChainRepository foodChainRepository) {
         this.foodChainRepository = foodChainRepository;
     }
@@ -24,9 +24,9 @@ public class FoodChainsRestController {
     @GetMapping("/{id}")
     public ResponseEntity showOneFoodChain(@PathVariable Integer id) {
         Optional<FoodChain> foodChain = foodChainRepository.findById(id);
-        if (foodChain.isEmpty()) { //reference
+        if (foodChain.isEmpty()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
-        } else { //reference
+        } else {
             return new ResponseEntity(foodChain.get(), HttpStatus.OK);
         }
     }
