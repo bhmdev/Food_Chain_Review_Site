@@ -1,6 +1,8 @@
 CREATE TABLE food_chains (
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
+    rating INTEGER,
+    delivery BOOLEAN NOT NULL,
     description VARCHAR(255),
     img_url TEXT NOT NULL
 );

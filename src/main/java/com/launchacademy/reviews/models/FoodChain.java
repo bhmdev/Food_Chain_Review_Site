@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +32,13 @@ public class FoodChain {
   @NotBlank
   @Column(nullable = false)
   private String name;
+
+  @Column
+  private Double rating;
+
+  @NotNull
+  @Column(nullable = false)
+  private Boolean delivery;
 
   @Column
   private String description;
