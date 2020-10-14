@@ -41,6 +41,13 @@ public class FoodChain {
   private Boolean delivery;
 
   @Column
+  private Double rating;
+
+  @NotNull
+  @Column(nullable = false)
+  private Boolean delivery;
+
+  @Column
   private String description;
 
   @NotBlank
