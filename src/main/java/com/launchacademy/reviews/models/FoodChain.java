@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,20 +42,13 @@ public class FoodChain {
   private Boolean delivery;
 
   @Column
-  private Double rating;
-
-  @NotNull
-  @Column(nullable = false)
-  private Boolean delivery;
-
-  @Column
   private String description;
 
   @NotBlank
   @Column(name = "img_url", nullable = false)
   private String imgUrl;
 
-  @OneToMany(mappedBy = "foodChain", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "foodChain", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JsonIgnoreProperties("foodChain")
   private List<Review> reviewList;
 }
