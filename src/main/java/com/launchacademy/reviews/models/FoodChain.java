@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,11 +14,9 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.maven.plugins.annotations.Component;
 
 @Entity
 @Getter
@@ -36,6 +35,7 @@ public class FoodChain {
   private String name;
 
   @Column(columnDefinition = "NUMERIC(2,1)")
+
   private Double rating;
 
   @NotNull
@@ -49,7 +49,7 @@ public class FoodChain {
   @Column(name = "img_url", nullable = false)
   private String imgUrl;
 
-  @OneToMany(mappedBy = "foodChain", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "foodChain", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JsonIgnoreProperties("foodChain")
   private List<Review> reviewList;
 }
