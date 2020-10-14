@@ -1,6 +1,6 @@
 HELP.md
-src/main/frontend/node_modules/ 
 target/
+src/main/frontend/node_modules/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
