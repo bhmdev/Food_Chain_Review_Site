@@ -61,7 +61,7 @@ const FoodChainShow = (props) => {
                     {offersDelivery}
                 </ul>
             <p>List of Reviews:</p>
-                <p>{reviews}</p>
+            <p>{reviews}</p>
         </div>
     );
 }
