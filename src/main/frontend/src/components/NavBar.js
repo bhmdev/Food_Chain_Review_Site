@@ -15,8 +15,9 @@ const NavBar = (props) => {
             <li>
               <Link to="/foodchains">Home</Link>
             </li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <li>
+              <Link to="/foodchains/new">Food Review Form</Link>
+            </li>
           </ul>
         </div>
         <div className="top-bar-right">
