@@ -84,8 +84,8 @@ const FoodChainForm = props => {
       name="img_url"
       placeholder="https://www.readersdigest.ca/wp-content/uploads/2018/01/banned-mcdonalds.jpg"
       value={newFoodChain.imgUrl}
-      onChange={handleInputChange}
-      ></input>
+      onChange={handleInputChange}>
+      </input>
       </label>
       <div className="button-group">
         <input className="button" type="submit" value="Submit" />
