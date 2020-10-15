@@ -65,9 +65,9 @@ const FoodChainForm = props => {
           value={newFoodChain.delivery} 
           onChange={handleInputChange}>
           <option value="" hidden>Choose a delivery option</option>
-           <option value="Y">Yes</option>
-            <option value="N">No</option>
-           </select>
+          <option value="Y">Yes</option>
+           <option value="N">No</option>
+         </select>
       </label>
       <label>Description
         <input
