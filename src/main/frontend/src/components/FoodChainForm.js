@@ -66,7 +66,7 @@ const FoodChainForm = props => {
           onChange={handleInputChange}>
           <option value="" hidden>Choose a delivery option</option>
           <option value="Y">Yes</option>
-           <option value="N">No</option>
+          <option value="N">No</option>
          </select>
       </label>
       <label>Description
@@ -79,13 +79,13 @@ const FoodChainForm = props => {
         ></input>
       </label>
       <label>Image Url
-      <input
-      type="text"
-      name="img_url"
-      placeholder="https://www.readersdigest.ca/wp-content/uploads/2018/01/banned-mcdonalds.jpg"
-      value={newFoodChain.imgUrl}
-      onChange={handleInputChange}>
-      </input>
+        <input
+        type="text"
+        name="img_url"
+        placeholder="https://www.readersdigest.ca/wp-content/uploads/2018/01/banned-mcdonalds.jpg"
+        value={newFoodChain.imgUrl}
+        onChange={handleInputChange}>
+        </input>
       </label>
       <div className="button-group">
         <input className="button" type="submit" value="Submit" />
