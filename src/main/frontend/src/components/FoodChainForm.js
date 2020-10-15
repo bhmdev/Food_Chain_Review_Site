@@ -4,7 +4,9 @@ import _ from "lodash"
 const FoodChainForm = props => {
   const emptyFoodChain = {
     name: "",
-    description: ""
+    description: "",
+    delivery: "",
+    imgUrl: ""
   }
   const [newFoodChain, setNewFoodChain] = useState(emptyFoodChain);
   const [errors, setErrors] = useState({})
@@ -12,7 +14,7 @@ const FoodChainForm = props => {
   let requiredFields = {
     name: "Name",
     delivery: "delivery",
-    imgUrl: "imgurl"
+    imgUrl: "imgUrl"
   }
 
   const handleInputChange = event => {
@@ -81,7 +83,7 @@ const FoodChainForm = props => {
       <label>Image Url
         <input
         type="text"
-        name="img_url"
+        name="imgUrl"
         placeholder="https://www.readersdigest.ca/wp-content/uploads/2018/01/banned-mcdonalds.jpg"
         value={newFoodChain.imgUrl}
         onChange={handleInputChange}>
