@@ -32,8 +32,8 @@ const NavBar = (props) => {
 
       <Switch>
         <Route exact path="/foodchains" component={FoodChainsContainer} />
-        <Route exact path="/foodchains/:id" component={FoodChainShow} />
         <Route exact path="/foodchains/new" component={FoodChainForm} />
+        <Route exact path="/foodchains/:id" component={FoodChainShow} />
       </Switch>
     </>
   )
