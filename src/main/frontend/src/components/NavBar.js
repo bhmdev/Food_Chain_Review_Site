@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {Route, Switch, BrowserRouter, Link} from "react-router-dom"
+import FoodChainShow from "./FoodChainShow.js"
 import FoodChainForm from "./FoodChainForm.js"
 
 const NavBar = (props) => {
   let FoodChainsContainer = null
-  let FoodChainShow = null
 
   return (
     <>
@@ -32,7 +32,7 @@ const NavBar = (props) => {
 
       <Switch>
         <Route exact path="/foodchains" component={FoodChainsContainer} />
-        <Route exact path="/foodchains/:{id}" component={FoodChainShow} />
+        <Route exact path="/foodchains/:id" component={FoodChainShow} />
         <Route exact path="/foodchains/new" component={FoodChainForm} />
       </Switch>
     </>
