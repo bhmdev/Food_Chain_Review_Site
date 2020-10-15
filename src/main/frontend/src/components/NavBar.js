@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Route, Switch, BrowserRouter, Link} from "react-router-dom"
+import FoodChainForm from "./FoodChainForm.js"
 
 const NavBar = (props) => {
-  let FoodChainForm = null
   let FoodChainsContainer = null
   let FoodChainShow = null
 
