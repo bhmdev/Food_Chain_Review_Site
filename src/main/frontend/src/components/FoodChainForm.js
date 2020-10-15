@@ -96,6 +96,3 @@ const FoodChainForm = props => {
   )
  }
 export default FoodChainForm
-
-
-  
