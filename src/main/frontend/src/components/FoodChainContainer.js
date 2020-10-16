@@ -36,6 +36,7 @@ const FoodChainsContainer = () => {
   })
 
   var settings = {
+    autoplay: true,
     arrows: true,
     dots: true,
     infinite: true,

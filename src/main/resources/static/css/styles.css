@@ -3,7 +3,7 @@ import  "~slick-carousel/slick/slick-theme.css";
 
 .slick-prev:before,
 .slick-next:before {
-    color: white;
+    color: black;
 }
 
 .slick-slide {
