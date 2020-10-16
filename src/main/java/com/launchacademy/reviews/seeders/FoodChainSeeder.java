@@ -51,7 +51,7 @@ public class FoodChainSeeder {
             applebees.setDescription(
                 "Casual dining, with mainstream American dishes such as salads, chicken, pasta, burgers, and 'riblets'.");
             applebees.setImgUrl(
-                "https://www.applebees.com/-/media/applebees/campaigns-2/health-and-safety/sanitation-lower-module-desktop.jpg?la=en&hash=87F93C0DB6C15FF647D5C4BE3A8D9F5938E36C9E)");
+                "https://static.olocdn.net/menu/applebees/960075b57731f4ecf8246c5a182abc37.jpg");
             foodChainList.add(applebees);
 
             FoodChain fiveGuys = new FoodChain();
@@ -67,7 +67,7 @@ public class FoodChainSeeder {
             timHortons.setDelivery(false);
             timHortons.setDescription("It's better than Dunkin Donuts.");
             timHortons.setImgUrl(
-                "https://www.gannett-cdn.com/-mm-/2425a0470766b558967df12696ca47cade450c8d/c=149-99-2888-1647/local/-/media/2018/01/20/INGroup/Indianapolis/636520357268068995--us-images-Tim-Hortons-Exterior-2.jpg");
+                "https://d1ralsognjng37.cloudfront.net/ba832c4b-1ba2-419e-a97d-07653636b187.jpeg");
             foodChainList.add(timHortons);
 
             FoodChain chickfila = new FoodChain();
