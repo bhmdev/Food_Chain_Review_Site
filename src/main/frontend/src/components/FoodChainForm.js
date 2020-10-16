@@ -10,7 +10,7 @@ const FoodChainForm = props => {
   }
   const [newFoodChain, setNewFoodChain] = useState(emptyFoodChain);
   const [errors, setErrors] = useState({})
-  
+
   let requiredFields = {
     name: "Name",
     delivery: "delivery",
@@ -27,7 +27,7 @@ const FoodChainForm = props => {
   const clearForm = () => {
     setNewFoodChain(emptyFoodChain);
   }
-  
+
   const handleSubmit = (event) => {
     event.preventDefault()
     let formErrors = {}
@@ -39,12 +39,22 @@ const FoodChainForm = props => {
         }
       }
     }
+
+    let payloadDelivery = newFoodChain.delivery == "Y" ? "true" : "false"
+
+    let payload = {...newFoodChain,
+    delivery: payloadDelivery,
+    rating: null,
+    reviewList: []}
+
     if (_.isEmpty(formErrors)) {
-      fetch('/api/v1/foodchains/new', {
+      fetch('/api/v1/foodchains', {
         method: "POST",
-        body: JSON.stringify(newFoodChain),
+        body: JSON.stringify(payload),
         headers: {"Content-Type" : "application/json"}
       })
+        .then(result => setNewFoodChain(emptyFoodChain))
+        .catch(errors => console.log(errors))
     } else setErrors(formErrors)
   }
 
@@ -53,18 +63,18 @@ const FoodChainForm = props => {
       <form onSubmit={handleSubmit} className="form callout medium-8 cell">
       <h2>Food Chain Form</h2>
       <p className="error">{errors.name}</p>
-      <label>Food Chain Name 
+      <label>Food Chain Name
         <input
           type="text"
           name="name"
           placeholder="McDonald's"
           value={newFoodChain.name}
           onChange={handleInputChange}
-        ></input>
+        />
       </label>
-      <label htmlfor= "delivery">Delivery
+      <label htmlFor= "delivery">Delivery
         <select name="delivery"
-          value={newFoodChain.delivery} 
+          value={newFoodChain.delivery}
           onChange={handleInputChange}>
           <option value="" hidden>Choose a delivery option</option>
           <option value="Y">Yes</option>
@@ -78,7 +88,7 @@ const FoodChainForm = props => {
           placeholder="The Golden Arches"
           value={newFoodChain.description}
           onChange={handleInputChange}
-        ></input>
+        />
       </label>
       <label>Image Url
         <input
