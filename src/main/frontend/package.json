@@ -34,7 +34,8 @@
     "style-loader": "^0.13.2",
     "webpack": "~2.3.1",
     "write-file-webpack-plugin": "~4.2.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "react-modal": "^3.11.2"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
