@@ -20,17 +20,29 @@ const FoodChainsContainer = () => {
   }, [])
 
   let foodChainList = foodChains.map(foodChain => {
+
+    let starRatings;
+    if(foodChain.rating != null) {
+      starRatings = <StarRatings
+        rating={foodChain.rating}
+        starDimension="30px"
+        starSpacing="15px"
+        starRatedColor="gold"
+      />
+    }else {
+      starRatings = <StarRatings
+        rating={0}
+        starDimension="30px"
+        starSpacing="15px"
+      />
+    }
+
     return (
       <div id="center-index" key={foodChain.id}>
         <Link to={`/foodchains/${foodChain.id}`}><img src={foodChain.imgUrl} height="600" width="600"
                                                       alt="slide 1"/></Link>
         <h3>{foodChain.name}</h3>
-        <StarRatings
-          rating={foodChain.rating}
-          starDimension="30px"
-          starSpacing="15px"
-          starRatedColor="gold"
-        />
+        {starRatings}
       </div>
     )
   })
