@@ -3,7 +3,6 @@ package com.launchacademy.reviews.controllers;
 import com.launchacademy.reviews.models.Review;
 import com.launchacademy.reviews.repositories.FoodChainRepository;
 import com.launchacademy.reviews.repositories.ReviewRepository;
-import com.launchacademy.reviews.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +17,19 @@ import java.util.List;
 public class ReviewRestController {
     private FoodChainRepository foodChainRepository;
     private ReviewRepository reviewRepository;
-    private ReviewService reviewService;
 
     @Autowired
-    public ReviewRestController(ReviewRepository reviewRepository, FoodChainRepository foodChainRepository,
-                                ReviewService reviewService) {
+    public ReviewRestController(ReviewRepository reviewRepository, FoodChainRepository foodChainRepository) {
         this.foodChainRepository = foodChainRepository;
         this.reviewRepository = reviewRepository;
-        this.reviewService = reviewService;
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestParam Integer foodChainId, @RequestBody @Valid Review review, BindingResult bindingResult) {
+    public ResponseEntity create(@RequestBody @Valid Review review, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
         } else {
-            return new ResponseEntity(reviewService.processReview(review, foodChainId), HttpStatus.CREATED);
+            return new ResponseEntity(reviewRepository.save(review), HttpStatus.CREATED);
         }
     }
 }
