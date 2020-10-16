@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import {Route, Switch, BrowserRouter, Link} from "react-router-dom"
+import React from 'react'
+import {Route, Switch, Link} from "react-router-dom"
 import FoodChainShow from "./FoodChainShow.js"
 import FoodChainForm from "./FoodChainForm.js"
+import FoodChainsContainer from "./FoodChainContainer";
 
 const NavBar = (props) => {
-  let FoodChainsContainer = null
 
   return (
     <>
