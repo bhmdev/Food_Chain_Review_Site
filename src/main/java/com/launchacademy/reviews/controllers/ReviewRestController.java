@@ -15,12 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/reviews")
 public class ReviewRestController {
-    private FoodChainRepository foodChainRepository;
     private ReviewRepository reviewRepository;
 
     @Autowired
-    public ReviewRestController(ReviewRepository reviewRepository, FoodChainRepository foodChainRepository) {
-        this.foodChainRepository = foodChainRepository;
+    public ReviewRestController(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
 
