@@ -1,7 +1,6 @@
 package com.launchacademy.reviews.controllers;
 
 import com.launchacademy.reviews.models.Review;
-import com.launchacademy.reviews.repositories.FoodChainRepository;
 import com.launchacademy.reviews.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
