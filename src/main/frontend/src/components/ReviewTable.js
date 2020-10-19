@@ -54,21 +54,14 @@ const ReviewTable = () => {
             })
             .then(response => response.json())
             .then(reviews => {
-                console.log
-                let foodChainsArray = reviews.map((review) => {
-                    return {id: review.id, comment: review.comment, rating: review.rating, foodChain: review.foodChain.name}
-                }
-
-                );
-                setReviewsData(foodChainsArray)
-                console.log(foodChainsArray)
+                setReviewsData(reviews)
             })
             .catch(error => console.log(error))
     }, [])
 
     const columns = [
         {title: "id", field: "id", hidden: true},
-        {title: "Food Chain", field: "foodChain"},
+        {title: "Food Chain", render: reviewsData => reviewsData.foodChain.name},
         {title: "Rating", field: "rating"},
         {title: "Comment", field: "comment"}
     ]
