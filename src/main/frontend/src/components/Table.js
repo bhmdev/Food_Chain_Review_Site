@@ -81,9 +81,6 @@ const Table = () => {
       errorList.push("Please enter image Url")
     }
 
-    console.log("This is the new data")
-    console.log(newData)
-
     if (errorList.length == 0) { //I don't think I will need an ID here...
       fetch('/api/v1/foodchains', {
         method: "POST",
