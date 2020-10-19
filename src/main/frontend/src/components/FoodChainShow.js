@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
+import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
 import OneReview from './OneReview.js'
 
 const FoodChainShow = (props) => {
@@ -20,11 +22,8 @@ const FoodChainShow = (props) => {
             .then(result => result.json())
             .then(foodChain => {
                 setFoodChain(foodChain)
-                //now show each Component whose restaurant property matches this foodChainId
                 setReviews(foodChain.reviewList.map(review => { //McDonald's or w/e is unknown
-                    //reference const declarations in OneReview.js
                     return <OneReview id={review.id} comment={review.comment} rating={review.rating}/>
-                    // return <div>{review.comment}<br></br>{review.rating}<br></br></div>
                 })
                 )
             })
@@ -42,30 +41,76 @@ const FoodChainShow = (props) => {
         offersDelivery = <li>No. Sad face</li>
     }
 
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)'
+        }
+    };
+
+    let subtitle;
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+        subtitle.style.color = '#f00';
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    const { register, handleSubmit, errors } = useForm();
+    const onSubmit = data => console.log(data);
+    console.log(errors);
+
     return (
         <div>
+            <div>
+                <button onClick={openModal}>Make A Review</button>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal" >
+                    <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <input type="text" name="Comment" placeholder="Comment" ref={register} />
+                        <input type="range" placeholder="Rating " name="Rating" ref={register({ max: 5, min: 0 })} />
+                        <input type="submit" />
+                        <button onClick={closeModal}>close</button>
+                    </form>
+                </Modal>
+            </div>
             {notFoundMessage}
             <h1>Look at this amazing food chain? Don't you want to eat here.</h1>
             <br></br>
             <h3>Restaurant Name:</h3>
-                <ul>
-                    <li>{foodChain.name}</li>
-                </ul>
+            <ul>
+                <li>{foodChain.name}</li>
+            </ul>
             <img src={foodChain.imgUrl}></img>
             <p>Description:</p>
-                <ul>
-                    <li>{foodChain.description}</li>
-                </ul>
+            <ul>
+                <li>{foodChain.description}</li>
+            </ul>
             <p>Rating:</p>
-                <ul>
-                    <li>{foodChain.rating}</li>
-                </ul>
+            <ul>
+                <li>{foodChain.rating}</li>
+            </ul>
             <p>Did they offer delivery in the time before COVID?</p>
-                <ul>
-                    {offersDelivery}
-                </ul>
+            <ul>
+                {offersDelivery}
+            </ul>
             <p>List of Reviews:</p>
-            <p>{reviews}</p>
+            {reviews}
         </div>
     );
 }

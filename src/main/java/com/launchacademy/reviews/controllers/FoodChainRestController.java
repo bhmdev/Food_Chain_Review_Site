@@ -2,6 +2,7 @@ package com.launchacademy.reviews.controllers;
 
 import com.launchacademy.reviews.models.FoodChain;
 import com.launchacademy.reviews.repositories.FoodChainRepository;
+import com.launchacademy.reviews.services.FoodChainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,12 @@ import java.util.Optional;
 @RequestMapping("api/v1/foodchains")
 public class FoodChainRestController {
     private FoodChainRepository foodChainRepository;
+    private FoodChainService foodChainService;
 
     @Autowired
-    public FoodChainRestController(FoodChainRepository foodChainRepository) {
+    public FoodChainRestController(FoodChainRepository foodChainRepository, FoodChainService foodChainService) {
         this.foodChainRepository = foodChainRepository;
+        this.foodChainService = foodChainService;
     }
 
     @GetMapping
@@ -49,12 +52,22 @@ public class FoodChainRestController {
         }
     }
 
-    @PutMapping("/{foodChainId}")
-    public ResponseEntity update(@RequestBody FoodChain foodChain, BindingResult bindingResult) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@RequestBody @Valid FoodChain foodChain, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
+        }else {
+            foodChainRepository.delete(foodChain);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity put(@RequestBody @Valid FoodChain foodChain, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
-        } else {
-            return new ResponseEntity(foodChainRepository.save(foodChain), HttpStatus.OK);
+        }else {
+            return new ResponseEntity(foodChainService.update(foodChain), HttpStatus.OK);
         }
     }
 }
