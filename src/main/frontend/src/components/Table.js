@@ -40,9 +40,8 @@ const tableIcons = {
 };
 
 const Table = () => {
-
   const [foodChainsData, setFoodChainsData] = useState([])
-  const [iserror, setIserror] = useState(false)
+  const [isError, setIsError] = useState(false)
   const [errorMessages, setErrorMessages] = useState([])
 
   useEffect(() => {
@@ -67,9 +66,9 @@ const Table = () => {
     {title: "Review list", field: "reviewList", hidden: true}
   ]
 
-  const handleRowAdd = (newData, resolve) => {
+  const validateData = newData => {
     let errorList = []
-    if (newData.delivery === undefined || (newData.delivery !== "true" && newData.delivery !== "false")) {
+    if (newData.delivery === undefined && newData.delivery !== true && newData.delivery !== false) {
       errorList.push("Please enter 'true' or 'false' for the delivery field")
     }
 
@@ -80,45 +79,39 @@ const Table = () => {
     if (newData.imgUrl === undefined) {
       errorList.push("Please enter image Url")
     }
+    return errorList
+  }
 
-    if (errorList.length == 0) { //I don't think I will need an ID here...
+  const handleRowAdd = (newData, resolve) => {
+    let errorList = validateData(newData)
+    if (errorList.length == 0) {
       fetch('/api/v1/foodchains', {
         method: "POST",
         body: JSON.stringify(newData),
         headers: {"Content-Type": "application/json"}
       })
+        .then(result => result.json())
         .then(result => {
           setFoodChainsData([...foodChainsData, result])
           resolve()
           setErrorMessages([])
-          setIserror(false)
+          setIsError(false)
         })
         .catch(errors => {
           console.log(errors)
-          setIserror(true)
+          setIsError(true)
           resolve()
         })
     } else {
       setErrorMessages(errorList)
-      setIserror(true)
+      setIsError(true)
       resolve()
     }
   }
 
   const handleRowUpdate = (newData, oldData, resolve) => {
-    let errorList = []
-    if (newData.delivery === undefined || (newData.delivery !== "true" && newData.delivery !== "false")) {
-      errorList.push("Please enter 'true' or 'false' for the delivery field")
-    }
-
-    if (newData.imgUrl === undefined) {
-      errorList.push("Please enter image Url")
-    }
-
-    if (newData.imgUrl === undefined) {
-      errorList.push("Please enter image Url")
-    }
-
+    let errorList = validateData(newData)
+    newData = {...newData, reviewList: null}
     if (errorList.length == 0) {
       fetch('/api/v1/foodchains/' + newData.id, {
         method: "PUT",
@@ -126,36 +119,34 @@ const Table = () => {
         headers: {"Content-Type": "application/json"}
       })
         .then(result => {
-          const dataUpdate = [...data]
+          const dataUpdate = [...foodChainsData]
           const index = oldData.tableData.id
           dataUpdate[index] = newData
           setFoodChainsData(dataUpdate)
           resolve()
           setErrorMessages([])
-          setIserror(false)
+          setIsError(false)
         })
         .catch(errors => {
           console.log(errors)
-          setIserror(true)
+          setIsError(true)
           resolve()
-
         })
     } else {
       setErrorMessages(errorList)
-      setIserror(true)
+      setIsError(true)
       resolve()
     }
   }
 
   const handleRowDelete = (oldData, resolve) => {
-    console.log("This is supposed to be deleted.")
     fetch('/api/v1/foodchains/' + oldData.id, {
       method: "DELETE",
       body: JSON.stringify(oldData),
       headers: {"Content-Type": "application/json"}
     })
       .then(result => {
-        const dataDelete = [...data];
+        const dataDelete = [...foodChainsData];
         const index = oldData.tableData.id;
         dataDelete.splice(index, 1);
         setFoodChainsData(dataDelete);
@@ -163,7 +154,7 @@ const Table = () => {
       })
       .catch(errors => {
         console.log(errors)
-        setIserror(true)
+        setIsError(true)
         resolve()
       })
   }
@@ -171,7 +162,7 @@ const Table = () => {
   return (
     <>
       <div>
-        {iserror &&
+        {isError &&
         <Alert severity="error">
           {errorMessages.map((msg, i) => {
             return <div key={i}>{msg}</div>
@@ -182,8 +173,11 @@ const Table = () => {
       <MaterialTable
         columns={columns}
         data={foodChainsData}
-        title="Edit, Delete, Update or Add Food Chains"
+        title="Edit, Delete, or Add Food Chains"
         icons={tableIcons}
+        options={{
+          pageSize: 10
+        }}
         editable={{
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {
