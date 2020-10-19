@@ -48,4 +48,13 @@ public class FoodChainRestController {
             return new ResponseEntity(foodChainRepository.save(foodChain), HttpStatus.CREATED);
         }
     }
+
+    @PutMapping("/{foodChainId}")
+    public ResponseEntity update(@RequestBody FoodChain foodChain, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
+        } else {
+            return new ResponseEntity(foodChainRepository.save(foodChain), HttpStatus.OK);
+        }
+    }
 }

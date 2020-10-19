@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import OneReview from './OneReview.js'
 
 const FoodChainShow = (props) => {
     let foodChainId = props.match.params.id;
@@ -19,8 +20,11 @@ const FoodChainShow = (props) => {
             .then(result => result.json())
             .then(foodChain => {
                 setFoodChain(foodChain)
-                setReviews(foodChain.reviewList.map(review => {
-                    return <div>{review.comment}<br></br>{review.rating}<br></br></div>
+                //now show each Component whose restaurant property matches this foodChainId
+                setReviews(foodChain.reviewList.map(review => { //McDonald's or w/e is unknown
+                    //reference const declarations in OneReview.js
+                    return <OneReview id={review.id} comment={review.comment} rating={review.rating}/>
+                    // return <div>{review.comment}<br></br>{review.rating}<br></br></div>
                 })
                 )
             })
