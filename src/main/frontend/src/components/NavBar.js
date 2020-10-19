@@ -4,6 +4,7 @@ import FoodChainShow from "./FoodChainShow.js"
 import FoodChainForm from "./FoodChainForm.js"
 import FoodChainsContainer from "./FoodChainContainer";
 import ReviewTable from "./ReviewTable";
+import Table from "./Table";
 
 const NavBar = (props) => {
 
@@ -20,7 +21,8 @@ const NavBar = (props) => {
               <Link to="/foodchains/new">Food Review Form</Link>
             </li>
             <li>
-              <Link to="/foodchains/admin">CHERISH</Link>
+              <Link to="/foodchains/admin_reviews">CHERISH</Link>
+              <Link to="/foodchains/admin">Admin</Link>
             </li>
           </ul>
         </div>
@@ -37,7 +39,8 @@ const NavBar = (props) => {
       <Switch>
         <Route exact path="/foodchains" component={FoodChainsContainer} />
         <Route exact path="/foodchains/new" component={FoodChainForm} />
-        <Route exact path="/foodchains/admin" component={ReviewTable} />
+        <Route exact path="/foodchains/admin_reviews" component={ReviewTable} />
+        <Route exact path="/foodchains/admin" component={Table} />
         <Route exact path="/foodchains/:id" component={FoodChainShow} />
       </Switch>
     </>
