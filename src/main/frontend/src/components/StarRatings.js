@@ -34,7 +34,7 @@ function StarRating2(props) {
 
   const handleChange = (value) => {
     setRating(value);
-    props.getRatingValue(value)
+    props.getRating(value)
   }
   return (
     <div>
