@@ -62,10 +62,17 @@ const FoodChainShow = (props) => {
     function closeModal() {
         setIsOpen(false);
     }
-    const [ratingValue, setRatingValue] = useState(0)
+    const [rating, setRating] = useState(0)
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => console.log(data);
-
+    const onSubmit = data => {fetch('/api/v1/reviews/', {
+        method: "POST",
+        body: JSON.stringify({...data, foodChain:foodChain}),
+        headers: {"Content-Type" : "application/json"}
+      })
+      .then(result => result.json())
+      .catch(errors => console.log(errors))
+    }
+      
     const reviews = reviewList.map(singleReview => {
         return <OneReview key={singleReview.id} comment={singleReview.comment} rating={singleReview.rating}/>
     })
@@ -86,9 +93,9 @@ const FoodChainShow = (props) => {
                     contentLabel="Example Modal" >
                     <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <input type="text" name="Comment" placeholder="Comment" ref={register} />
-                        <input type="hidden" name="ratingValue" value={ratingValue} ref={register}/>                       
-                        <StarRating getRatingValue={getRatingValue}/>
+                        <input type="text" name="comment" placeholder="comment" ref={register} />
+                        <input type="hidden" name="rating" value={rating} ref={register}/>                       
+                        <StarRating getRatingValue={getRating}/>
                         <input type="submit" />
                         <button onClick={closeModal}>close</button>
                     </form>
