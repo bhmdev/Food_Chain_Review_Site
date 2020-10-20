@@ -7,7 +7,6 @@ const FoodChainShow = (props) => {
     let foodChainId = props.match.params.id;
     const [foodChain, setFoodChain] = useState([])
     const [reviews, setReviews] = useState([])
-    const [applicationStatus, setApplicationStatus] = useState("");
     const [pageFound, setPageFound] = useState(true);
 
     useEffect(() => {
@@ -65,10 +64,13 @@ const FoodChainShow = (props) => {
     function closeModal() {
         setIsOpen(false);
     }
-
-    const { register, handleSubmit, errors, StarRating2 } = useForm();
+    const [ratingValue, setRatingValue] = useState(0)
+    const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => console.log(data);
-    console.log(errors);
+
+    const getRatingValue = value => {
+        setRatingValue(value)
+    }
 
     return (
         <div>
@@ -83,8 +85,8 @@ const FoodChainShow = (props) => {
                     <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" name="Comment" placeholder="Comment" ref={register} />
-                        {/* <input type="range" placeholder="Rating " name="Rating" ref={register({ max: 5, min: 0 })} /> */}
-                        <StarRating />
+                        <input type="hidden" name="ratingValue" value={ratingValue} ref={register}/>                       
+                        <StarRating getRatingValue={getRatingValue}/>
                         <input type="submit" />
                         <button onClick={closeModal}>close</button>
                     </form>

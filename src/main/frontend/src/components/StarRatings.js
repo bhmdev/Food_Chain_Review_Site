@@ -29,11 +29,12 @@ function StarRating({count, value,
   )
 }
 
-function StarRating2() {
+function StarRating2(props) {
   const [rating, setRating] = useState(3);
 
   const handleChange = (value) => {
     setRating(value);
+    props.getRatingValue(value)
   }
   return (
     <div>
@@ -43,7 +44,7 @@ function StarRating2() {
        value={rating}
        activeColor ={'blue'}
        inactiveColor={'grey'}
-       onChange={handleChange}  />
+       onChange={handleChange} />
     </div>
   )
 }
