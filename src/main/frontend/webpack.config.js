@@ -13,6 +13,7 @@ module.exports = {
   },
   module: {
     rules: [
+      { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
       {
         test: /\.scss$/,
         use: [
@@ -20,6 +21,10 @@ module.exports = {
           "css-loader",
           "sass-loader"
         ]
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
       },
       {
         test: /\.jsx?$/,

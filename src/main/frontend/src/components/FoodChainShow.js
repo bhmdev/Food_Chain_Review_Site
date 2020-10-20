@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
+import StarRating from './StarRatings';
 
 const FoodChainShow = (props) => {
     let foodChainId = props.match.params.id;
@@ -65,7 +66,7 @@ const FoodChainShow = (props) => {
         setIsOpen(false);
     }
 
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors, StarRating2 } = useForm();
     const onSubmit = data => console.log(data);
     console.log(errors);
 
@@ -82,7 +83,8 @@ const FoodChainShow = (props) => {
                     <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" name="Comment" placeholder="Comment" ref={register} />
-                        <input type="range" placeholder="Rating " name="Rating" ref={register({ max: 5, min: 0 })} />
+                        {/* <input type="range" placeholder="Rating " name="Rating" ref={register({ max: 5, min: 0 })} /> */}
+                        <StarRating />
                         <input type="submit" />
                         <button onClick={closeModal}>close</button>
                     </form>

@@ -36,14 +36,19 @@
     "write-file-webpack-plugin": "~4.2.0",
     "slick-carousel": "^1.8.1",
     "react-modal": "^3.11.2",
+    "semantic-ui-react": "2.0.0",
+    "@thumbtack/thumbprint-react":"14.1.0",
+    "@thumbtack/thumbprint-global-css": "0.1.17",
+    "@svgr/webpack":"5.4.0"
     "material-table": "^1.69.1",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56"
   },
+
   "devDependencies": {
     "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-env": "^7.11.0", 
     "@types/jest": "^26.0.9",
     "babel-jest": "^26.2.2",
     "debug": "~2.6.9",
