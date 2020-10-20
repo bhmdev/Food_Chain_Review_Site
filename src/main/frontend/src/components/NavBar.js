@@ -3,7 +3,7 @@ import {Route, Switch, Link} from "react-router-dom"
 import FoodChainShow from "./FoodChainShow.js"
 import FoodChainForm from "./FoodChainForm.js"
 import FoodChainsContainer from "./FoodChainContainer";
-import Table from "./Table";
+import TableContainer from "./TableContainer";
 
 const NavBar = (props) => {
 
@@ -37,7 +37,7 @@ const NavBar = (props) => {
       <Switch>
         <Route exact path="/foodchains" component={FoodChainsContainer} />
         <Route exact path="/foodchains/new" component={FoodChainForm} />
-        <Route exact path="/foodchains/admin" component={Table} />
+        <Route exact path="/foodchains/admin" component={TableContainer} />
         <Route exact path="/foodchains/:id" component={FoodChainShow} />
       </Switch>
     </>

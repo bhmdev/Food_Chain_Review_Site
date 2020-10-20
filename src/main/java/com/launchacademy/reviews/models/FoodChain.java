@@ -48,7 +48,7 @@ public class FoodChain {
   @Column(name = "img_url", nullable = false)
   private String imgUrl;
 
-  @OneToMany(mappedBy = "foodChain", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "foodChain", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
   @JsonIgnoreProperties("foodChain")
   private List<Review> reviewList;
 }
