@@ -35,3 +35,8 @@
     width: 96%;
     margin: 0 auto;
 }
+
+#table-container {
+    background-color: white;
+    color: black;
+}
