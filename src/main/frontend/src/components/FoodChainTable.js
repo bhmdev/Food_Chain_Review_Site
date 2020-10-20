@@ -36,7 +36,7 @@ import handleRowAdd from "../helpers/handleRowAdd";
 
   const validateData = newData => {
     let errorList = []
-    if (newData.delivery !== "true" && newData.delivery !== "false") {
+    if (newData.delivery !== "true" && newData.delivery !== "false" && newData.delivery !== true && newData.delivery !== false) {
       errorList.push("Please enter 'true' or 'false' for the delivery field")
     }
 

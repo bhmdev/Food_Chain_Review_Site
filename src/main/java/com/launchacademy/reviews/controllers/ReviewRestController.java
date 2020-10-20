@@ -14,7 +14,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v1/reviews")
 public class ReviewRestController {
-    private FoodChainRepository foodChainRepository;
     private ReviewRepository reviewRepository;
 
     @Autowired
