@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
+import OneReview from './OneReview.js'
+import StarRating from './StarRatings';
 
 const FoodChainShow = (props) => {
     let foodChainId = props.match.params.id;
     const [foodChain, setFoodChain] = useState([])
-    const [reviews, setReviews] = useState([])
-    const [applicationStatus, setApplicationStatus] = useState("");
-    const [pageFound, setPageFound] = useState(true);
+    const [pageFound, setPageFound] = useState(true)
+    const [reviewList, setReviewList] = useState([])
 
     useEffect(() => {
         fetch(`/api/v1/foodchains/${foodChainId}`)
@@ -21,10 +22,7 @@ const FoodChainShow = (props) => {
             .then(result => result.json())
             .then(foodChain => {
                 setFoodChain(foodChain)
-                setReviews(foodChain.reviewList.map(review => {
-                    return <div key={review.id}>{review.comment}<br></br>{review.rating}<br></br></div>
-                })
-                )
+                setReviewList(foodChain.reviewList)
             })
     }, []);
 
@@ -35,9 +33,9 @@ const FoodChainShow = (props) => {
 
     let offersDelivery;
     if (foodChain.delivery == true) {
-        offersDelivery = <li>Yes!</li>
+        offersDelivery = <li key={1}>Yes!</li>
     } else {
-        offersDelivery = <li>No. Sad face</li>
+        offersDelivery = <li key={2}>No. Sad face</li>
     }
 
     const customStyles = {
@@ -64,10 +62,17 @@ const FoodChainShow = (props) => {
     function closeModal() {
         setIsOpen(false);
     }
-
+    const [ratingValue, setRatingValue] = useState(0)
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => console.log(data);
-    console.log(errors);
+
+    const reviews = reviewList.map(singleReview => {
+        return <OneReview key={singleReview.id} comment={singleReview.comment} rating={singleReview.rating}/>
+    })
+
+    const getRatingValue = value => {
+        setRatingValue(value)
+    }
 
     return (
         <div>
@@ -82,7 +87,8 @@ const FoodChainShow = (props) => {
                     <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" name="Comment" placeholder="Comment" ref={register} />
-                        <input type="range" placeholder="Rating " name="Rating" ref={register({ max: 5, min: 0 })} />
+                        <input type="hidden" name="ratingValue" value={ratingValue} ref={register}/>                       
+                        <StarRating getRatingValue={getRatingValue}/>
                         <input type="submit" />
                         <button onClick={closeModal}>close</button>
                     </form>

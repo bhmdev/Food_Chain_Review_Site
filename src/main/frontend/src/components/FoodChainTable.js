@@ -6,7 +6,7 @@ import handleRowDelete from "../helpers/handleRowDelete";
 import handleRowUpdate from "../helpers/handleRowUpdate";
 import handleRowAdd from "../helpers/handleRowAdd";
 
-const FoodChainTable = () => {
+  const FoodChainTable = () => {
   const [foodChainsData, setFoodChainsData] = useState([])
   const [isError, setIsError] = useState(false)
   const [errorMessages, setErrorMessages] = useState([])
@@ -25,6 +25,7 @@ const FoodChainTable = () => {
 
   const columns = [
     {title: "id", field: "id", hidden: true},
+
     {title: "Name", field: "name"},
     {title: "Rating", field: "rating", editable: "never"},
     {title: "Delivery", field: "delivery"},
@@ -90,3 +91,4 @@ const FoodChainTable = () => {
 }
 
 export default FoodChainTable
+
