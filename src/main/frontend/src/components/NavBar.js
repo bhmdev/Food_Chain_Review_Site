@@ -3,8 +3,7 @@ import {Route, Switch, Link} from "react-router-dom"
 import FoodChainShow from "./FoodChainShow.js"
 import FoodChainForm from "./FoodChainForm.js"
 import FoodChainsContainer from "./FoodChainContainer";
-import ReviewTable from "./ReviewTable";
-import FoodChainTable from "./FoodChainTable";
+import TableContainer from "./TableContainer";
 
 const NavBar = (props) => {
 
@@ -19,9 +18,6 @@ const NavBar = (props) => {
             </li>
             <li>
               <Link to="/foodchains/new">Food Review Form</Link>
-            </li>
-            <li>
-              <Link to="/foodchains/admin_reviews">Reviews Table</Link>
             </li>
             <li>
               <Link to="/foodchains/admin">Admin</Link>
@@ -41,8 +37,7 @@ const NavBar = (props) => {
       <Switch>
         <Route exact path="/foodchains" component={FoodChainsContainer} />
         <Route exact path="/foodchains/new" component={FoodChainForm} />
-        <Route exact path="/foodchains/admin_reviews" component={ReviewTable} />
-        <Route exact path="/foodchains/admin" component={FoodChainTable} />
+        <Route exact path="/foodchains/admin" component={TableContainer} />
         <Route exact path="/foodchains/:id" component={FoodChainShow} />
       </Switch>
     </>

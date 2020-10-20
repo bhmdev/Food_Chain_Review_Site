@@ -4,44 +4,49 @@ import Alert from '@material-ui/lab/Alert';
 import TableIcons from "../helpers/TableIcons";
 import handleRowDelete from "../helpers/handleRowDelete";
 import handleRowUpdate from "../helpers/handleRowUpdate";
+import handleRowAdd from "../helpers/handleRowAdd";
 
-const ReviewTable = () => {
-
-  const [reviewsData, setReviewsData] = useState([])
+  const FoodChainTable = () => {
+  const [foodChainsData, setFoodChainsData] = useState([])
   const [isError, setIsError] = useState(false)
   const [errorMessages, setErrorMessages] = useState([])
 
   useEffect(() => {
-    fetch("/api/v1/reviews")
+    fetch("/api/v1/foodchains")
       .then((response) => {
         if (response.ok) {
           return response
         }
       })
       .then(response => response.json())
-      .then(reviews => {
-        setReviewsData(reviews)
-      })
+      .then(foodChains => setFoodChainsData(foodChains))
       .catch(error => console.log(error))
   }, [])
 
   const columns = [
     {title: "id", field: "id", hidden: true},
-    {title: "Food Chain", render: reviewsData => reviewsData.foodChain.name},
-    {title: "Rating", field: "rating"},
-    {title: "Comment", field: "comment"}
+
+    {title: "Name", field: "name"},
+    {title: "Rating", field: "rating", editable: "never"},
+    {title: "Delivery", field: "delivery"},
+    {title: "Description", field: "description"},
+    {title: "Image Url", field: "imgUrl"},
+    {title: "Review list", field: "reviewList", hidden: true}
   ]
 
-  const validateData = (newData) => {
-    let errorList = [];
-    if (newData.rating === undefined) {
-      errorList.push("Please make sure review contains a rating")
+  const validateData = newData => {
+    let errorList = []
+    if (newData.delivery !== "true" && newData.delivery !== "false") {
+      errorList.push("Please enter 'true' or 'false' for the delivery field")
     }
 
-    if (newData.comment === undefined || newData.comment == "") {
-      errorList.push("Please make sure review contains a comment")
+    if (newData.name === "") {
+      errorList.push("Please enter image Url")
     }
 
+    if (newData.imgUrl === "") {
+      errorList.push("Please enter image Url")
+    }
     return errorList
   }
 
@@ -58,8 +63,8 @@ const ReviewTable = () => {
       </div>
       <MaterialTable
         columns={columns}
-        data={reviewsData}
-        title="Edit, or Delete Reviews"
+        data={foodChainsData}
+        title="Edit, Delete, or Add Food Chains"
         icons={TableIcons}
         options={{
           pageSize: 10
@@ -67,12 +72,17 @@ const ReviewTable = () => {
         editable={{
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {
-              handleRowUpdate(newData, oldData, resolve, "reviews", reviewsData, setReviewsData,
-                setErrorMessages, setIsError, validateData);
+              handleRowUpdate(newData, oldData, resolve, "foodchains", foodChainsData,
+                setFoodChainsData, setErrorMessages, setIsError, validateData);
+            }),
+          onRowAdd: (newData) =>
+            new Promise((resolve) => {
+              handleRowAdd(newData, resolve, "foodchains", foodChainsData, setFoodChainsData,
+                setErrorMessages,setIsError, validateData)
             }),
           onRowDelete: (oldData) =>
             new Promise((resolve) => {
-              handleRowDelete(oldData, resolve, "reviews", reviewsData, setReviewsData, setIsError)
+              handleRowDelete(oldData, resolve, "foodchains", foodChainsData, setFoodChainsData, setIsError)
             }),
         }}
       />
@@ -80,4 +90,5 @@ const ReviewTable = () => {
   )
 }
 
-export default ReviewTable
+export default FoodChainTable
+

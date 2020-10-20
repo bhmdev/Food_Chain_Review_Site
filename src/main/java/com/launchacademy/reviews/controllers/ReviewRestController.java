@@ -1,5 +1,4 @@
 package com.launchacademy.reviews.controllers;
-import com.launchacademy.reviews.repositories.FoodChainRepository;
 import com.launchacademy.reviews.repositories.ReviewRepository;
 import com.launchacademy.reviews.models.Review;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +64,4 @@ public class ReviewRestController {
             return new ResponseEntity(HttpStatus.OK);
         }
     }
-
 }
