@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
-import OneReview from './OneReview.js'
 
 const FoodChainShow = (props) => {
     let foodChainId = props.match.params.id;
@@ -22,8 +21,8 @@ const FoodChainShow = (props) => {
             .then(result => result.json())
             .then(foodChain => {
                 setFoodChain(foodChain)
-                setReviews(foodChain.reviewList.map(review => { //McDonald's or w/e is unknown
-                    return <OneReview id={review.id} comment={review.comment} rating={review.rating}/>
+                setReviews(foodChain.reviewList.map(review => {
+                    return <div key={review.id}>{review.comment}<br></br>{review.rating}<br></br></div>
                 })
                 )
             })

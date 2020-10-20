@@ -27,10 +27,8 @@ public class ReviewRestController {
     @PutMapping("/{reviewId}")
     public ResponseEntity update(@RequestBody Review review, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println("Something went wrong! Boo");
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
         } else {
-            System.out.println("Getting it here");
             return new ResponseEntity(reviewRepository.save(review), HttpStatus.OK);
         }
     }
