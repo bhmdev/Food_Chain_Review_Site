@@ -62,6 +62,7 @@ public class ReviewRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
         } else {
+            System.out.println("Deleting!");
             reviewRepository.delete(review);
             return new ResponseEntity(HttpStatus.OK);
         }
