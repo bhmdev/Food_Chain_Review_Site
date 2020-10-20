@@ -52,7 +52,6 @@ public class ReviewRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
         } else {
-            System.out.println("Edited!! Or was it......");
             return new ResponseEntity(reviewRepository.save(review), HttpStatus.OK);
         }
     }
