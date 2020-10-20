@@ -8,7 +8,8 @@ const FoodChainShow = (props) => {
     const [foodChain, setFoodChain] = useState([])
     const [reviews, setReviews] = useState([])
     const [applicationStatus, setApplicationStatus] = useState("");
-    const [pageFound, setPageFound] = useState(true);
+    const [pageFound, setPageFound] = useState(true)
+    const [reviewList, setReviewList] = useState([])
 
     useEffect(() => {
         fetch(`/api/v1/foodchains/${foodChainId}`)
@@ -22,10 +23,11 @@ const FoodChainShow = (props) => {
             .then(result => result.json())
             .then(foodChain => {
                 setFoodChain(foodChain)
-                setReviews(foodChain.reviewList.map(review => { //McDonald's or w/e is unknown
-                    return <OneReview id={review.id} comment={review.comment} rating={review.rating}/>
-                })
-                )
+                setReviewList(foodChain.reviewList)
+                // setReviews(foodChain.reviewList.map(review => {
+                //     return <OneReview id={review.id} comment={review.comment} rating={review.rating}/>
+                // })
+                // )
             })
     }, []);
 
@@ -68,7 +70,10 @@ const FoodChainShow = (props) => {
 
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => console.log(data);
-    console.log(errors);
+    
+    reviews = reviewList.map(singleReview => {
+        return <OneReview id={singleReview.id} comment={singleReview.comment} rating={singleReview.rating}/>
+    })
 
     return (
         <div>
