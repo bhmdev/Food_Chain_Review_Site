@@ -26,4 +26,13 @@ public class FoodChainService {
     foodChain.setRating(average);
     return foodChainRepository.save(foodChain);
   }
+
+  public FoodChain update(FoodChain foodChain) {
+    FoodChain updateFoodChain = foodChainRepository.findById(foodChain.getId()).get();
+    updateFoodChain.setName(foodChain.getName());
+    updateFoodChain.setDelivery(foodChain.getDelivery());
+    updateFoodChain.setDescription(foodChain.getDescription());
+    updateFoodChain.setImgUrl(foodChain.getImgUrl());
+    return foodChainRepository.save(updateFoodChain);
+  }
 }
