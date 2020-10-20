@@ -16,6 +16,6 @@ const handleRowDelete = (oldData, resolve, resource, rowData, setRowData, setIsE
         setIsError(true)
         resolve()
       })
-  }
+}
   
-  export default handleRowDelete
+export default handleRowDelete

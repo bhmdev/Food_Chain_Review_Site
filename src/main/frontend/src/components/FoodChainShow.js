@@ -6,8 +6,6 @@ import OneReview from './OneReview.js'
 const FoodChainShow = (props) => {
     let foodChainId = props.match.params.id;
     const [foodChain, setFoodChain] = useState([])
-    const [reviews, setReviews] = useState([])
-    const [applicationStatus, setApplicationStatus] = useState("");
     const [pageFound, setPageFound] = useState(true)
     const [reviewList, setReviewList] = useState([])
 
@@ -24,10 +22,6 @@ const FoodChainShow = (props) => {
             .then(foodChain => {
                 setFoodChain(foodChain)
                 setReviewList(foodChain.reviewList)
-                // setReviews(foodChain.reviewList.map(review => {
-                //     return <OneReview id={review.id} comment={review.comment} rating={review.rating}/>
-                // })
-                // )
             })
     }, []);
 
@@ -38,9 +32,9 @@ const FoodChainShow = (props) => {
 
     let offersDelivery;
     if (foodChain.delivery == true) {
-        offersDelivery = <li>Yes!</li>
+        offersDelivery = <li key={1}>Yes!</li>
     } else {
-        offersDelivery = <li>No. Sad face</li>
+        offersDelivery = <li key={2}>No. Sad face</li>
     }
 
     const customStyles = {
@@ -71,8 +65,8 @@ const FoodChainShow = (props) => {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => console.log(data);
     
-    reviews = reviewList.map(singleReview => {
-        return <OneReview id={singleReview.id} comment={singleReview.comment} rating={singleReview.rating}/>
+    const reviews = reviewList.map(singleReview => {
+        return <OneReview key={singleReview.id} comment={singleReview.comment} rating={singleReview.rating}/>
     })
 
     return (

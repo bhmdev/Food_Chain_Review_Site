@@ -1,4 +1,5 @@
 const handleRowUpdate = (newData, oldData, resolve, resource, rowData, setRowData, setErrorMessages, setIsError, validateData) => {
+    console.log("is it even getting in here?")
     let errorList = validateData(newData)
     if (resource === "foodchains") {
       newData = {...newData, reviewList: null}
@@ -29,6 +30,6 @@ const handleRowUpdate = (newData, oldData, resolve, resource, rowData, setRowDat
       setIsError(true)
       resolve()
     }
-  }
+}
   
-  export default handleRowUpdate
+export default handleRowUpdate

@@ -47,12 +47,12 @@ public class ReviewRestController {
         }
     }
 
-    @PutMapping("/{reviewId}")
-    public ResponseEntity update(@RequestBody Review review, BindingResult bindingResult) {
+    @PutMapping("/{id}")
+    public ResponseEntity update(@RequestBody @Valid Review review, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println("Something went wrong! Boo");
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
         } else {
+            System.out.println("Edited!! Or was it......");
             return new ResponseEntity(reviewRepository.save(review), HttpStatus.OK);
         }
     }
@@ -62,6 +62,7 @@ public class ReviewRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
         } else {
+            reviewRepository.delete(review);
             return new ResponseEntity(HttpStatus.OK);
         }
     }

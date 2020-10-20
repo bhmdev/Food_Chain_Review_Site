@@ -23,6 +23,6 @@ const handleRowAdd = (newData, resolve, resource, rowData, setRowData, setErrorM
       setIsError(true)
       resolve()
     }
-  }
+}
   
-  export default handleRowAdd
+export default handleRowAdd
