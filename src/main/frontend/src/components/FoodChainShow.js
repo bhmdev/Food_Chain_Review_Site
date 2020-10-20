@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import OneReview from './OneReview.js'
+import StarRating from './StarRatings';
 
 const FoodChainShow = (props) => {
     let foodChainId = props.match.params.id;
@@ -61,13 +62,17 @@ const FoodChainShow = (props) => {
     function closeModal() {
         setIsOpen(false);
     }
-
+    const [ratingValue, setRatingValue] = useState(0)
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => console.log(data);
-    
+
     const reviews = reviewList.map(singleReview => {
         return <OneReview key={singleReview.id} comment={singleReview.comment} rating={singleReview.rating}/>
     })
+
+    const getRatingValue = value => {
+        setRatingValue(value)
+    }
 
     return (
         <div>
@@ -82,7 +87,8 @@ const FoodChainShow = (props) => {
                     <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" name="Comment" placeholder="Comment" ref={register} />
-                        <input type="range" placeholder="Rating " name="Rating" ref={register({ max: 5, min: 0 })} />
+                        <input type="hidden" name="ratingValue" value={ratingValue} ref={register}/>                       
+                        <StarRating getRatingValue={getRatingValue}/>
                         <input type="submit" />
                         <button onClick={closeModal}>close</button>
                     </form>
