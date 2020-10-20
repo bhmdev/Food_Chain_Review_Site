@@ -70,6 +70,7 @@ const FoodChainShow = (props) => {
         headers: {"Content-Type" : "application/json"}
       })
       .then(result => result.json())
+      .then(result => setReviewList([...reviewList, result]))
       .catch(errors => console.log(errors))
     }
       
@@ -77,8 +78,8 @@ const FoodChainShow = (props) => {
         return <OneReview key={singleReview.id} comment={singleReview.comment} rating={singleReview.rating}/>
     })
 
-    const getRatingValue = value => {
-        setRatingValue(value)
+    const getRating = value => {
+        setRating(value)
     }
 
     return (
@@ -95,7 +96,7 @@ const FoodChainShow = (props) => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" name="comment" placeholder="comment" ref={register} />
                         <input type="hidden" name="rating" value={rating} ref={register}/>                       
-                        <StarRating getRatingValue={getRating}/>
+                        <StarRating getRating={getRating}/>
                         <input type="submit" />
                         <button onClick={closeModal}>close</button>
                     </form>
