@@ -13,6 +13,7 @@ const FoodChainForm = props => {
   const [errors, setErrors] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [newFoodChainId, setNewFoodChainId] = useState(null)
+  const [duplicateNameError, setDuplicateNameError] = useState(false)
 
   let requiredFields = {
     name: "Name",
@@ -56,16 +57,31 @@ const FoodChainForm = props => {
         body: JSON.stringify(payload),
         headers: {"Content-Type" : "application/json"}
       })
-        .then(result => result.json())
         .then(result => {
-          setNewFoodChainId(result.id)
-          setShouldRedirect(true)
+          if (result.ok) {
+            return result.json()
+          }else {
+            setDuplicateNameError(true)
+            setErrors(formErrors)
+          }
+        })
+        .then(result => {
+          if(result !== undefined) {
+            setNewFoodChainId(result.id)
+            setShouldRedirect(true)
+          }
         })
         .catch(errors => console.log(errors))
     } else setErrors(formErrors)
   }
 
-  if(shouldRedirect) {
+  let duplicateError;
+  if (duplicateNameError) {
+    duplicateError =
+      <p>The food chain you want to submit is already in the system.<br></br>Please use the search bar to find it.</p>
+  }
+
+  if(shouldRedirect && newFoodChainId !== undefined) {
     return <Redirect to={`/foodchains/${newFoodChainId}`} />
   }
 
@@ -74,6 +90,7 @@ const FoodChainForm = props => {
       <form onSubmit={handleSubmit} className="form callout medium-8 cell">
       <h2>Food Chain Form</h2>
         <div className="error">
+          {duplicateError}
           <p>{errors.name}</p>
           <p>{errors.delivery}</p>
           <p>{errors.imgUrl}</p>

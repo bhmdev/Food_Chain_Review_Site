@@ -70,7 +70,10 @@ const FoodChainShow = (props) => {
         headers: {"Content-Type" : "application/json"}
       })
       .then(result => result.json())
-      .then(result => setReviewList([...reviewList, result]))
+      .then(result => {
+        setReviewList([...reviewList, result])
+        closeModal()
+    })
       .catch(errors => console.log(errors))
     }
       

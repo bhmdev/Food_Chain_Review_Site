@@ -4,6 +4,7 @@ import com.launchacademy.reviews.models.FoodChain;
 import com.launchacademy.reviews.repositories.FoodChainRepository;
 import com.launchacademy.reviews.services.FoodChainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -45,18 +46,23 @@ public class FoodChainRestController {
 
     @PostMapping
     public ResponseEntity create(@RequestBody @Valid FoodChain foodChain, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
-        }else {
-            return new ResponseEntity(foodChainRepository.save(foodChain), HttpStatus.CREATED);
+        } else {
+            try {
+                FoodChain newFoodChain = foodChainRepository.save(foodChain);
+                return new ResponseEntity(newFoodChain, HttpStatus.CREATED);
+            } catch (DataIntegrityViolationException e) {
+                return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+            }
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@RequestBody @Valid FoodChain foodChain, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
-        }else {
+        } else {
             foodChainRepository.delete(foodChain);
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -66,7 +72,7 @@ public class FoodChainRestController {
     public ResponseEntity put(@RequestBody @Valid FoodChain foodChain, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
-        }else {
+        } else {
             return new ResponseEntity(foodChainService.update(foodChain), HttpStatus.OK);
         }
     }

@@ -1,6 +1,5 @@
 .star {
-  display: inline-block;  
-  cursor: pointer;
+  display: inline-block; 
 }
 
 .inactive, .active {
