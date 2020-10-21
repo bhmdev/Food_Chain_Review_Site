@@ -12,5 +12,10 @@
 }
 
 .active {
-  color: blue;
+  color: peachpuff;
+}
+
+.sbutton {
+  align-items: center;
+  text-align: center;
 }

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
-import OneReview from './OneReview.js'
+import OneReview from './OneReview.js';
 import StarRating from './StarRatings';
+import './App.css'
 
 Modal.setAppElement('#app')
 const FoodChainShow = (props) => {
@@ -85,7 +86,7 @@ const FoodChainShow = (props) => {
     const getRating = value => {
         setRating(value)
     }
-
+    
     return (
         <div class="chain-div">
             {notFoundMessage}
@@ -114,20 +115,21 @@ const FoodChainShow = (props) => {
                 <div class="button-center-stabilizer">
                     <button class="create-review" onClick={openModal}>Add A Review</button>
                     <Modal
-                        isOpen={modalIsOpen}
-                        onAfterOpen={afterOpenModal}
-                        onRequestClose={closeModal}
-                        style={customStyles}
-                        contentLabel="Example Modal" >
-                        <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <input type="text" name="comment" placeholder="comment" ref={register} />
-                            <input type="hidden" name="rating" value={rating} ref={register}/>                       
-                            <StarRating getRating={getRating}/>
-                            <input type="submit" />
-                            <button onClick={closeModal}>close</button>
-                        </form>
-                    </Modal>
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal">
+                    <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <input type="text" name="comment" placeholder="comment" ref={register} />
+                        <input type="hidden" name="rating" value={rating} ref={register}/>                       
+                        <StarRating getRating={getRating}/>
+                        <br></br>
+                        <div className="sbutton">
+                        <input className="button" type="submit"/></div>
+                    </form>
+                </Modal>
                 </div>
             </div>
         </div>
