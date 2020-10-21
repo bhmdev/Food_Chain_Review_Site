@@ -1,6 +1,6 @@
 CREATE TABLE food_chains (
     id SERIAL PRIMARY KEY,
-    name VARCHAR NOT NULL,
+    name VARCHAR NOT NULL UNIQUE,
     rating NUMERIC(2,1),
     delivery BOOLEAN NOT NULL,
     description VARCHAR(255),

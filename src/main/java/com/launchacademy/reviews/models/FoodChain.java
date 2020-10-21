@@ -31,7 +31,7 @@ public class FoodChain {
   private Integer id;
 
   @NotBlank
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String name;
 
   @Column(columnDefinition = "NUMERIC(2,1)")
