@@ -1,6 +1,7 @@
 package com.launchacademy.reviews.controllers;
 import com.launchacademy.reviews.repositories.ReviewRepository;
 import com.launchacademy.reviews.models.Review;
+import com.launchacademy.reviews.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,12 @@ import java.util.Optional;
 @RequestMapping("api/v1/reviews")
 public class ReviewRestController {
     private ReviewRepository reviewRepository;
+    private ReviewService reviewService;
 
     @Autowired
-    public ReviewRestController(ReviewRepository reviewRepository) {
+    public ReviewRestController(ReviewRepository reviewRepository, ReviewService reviewService) {
         this.reviewRepository = reviewRepository;
+        this.reviewService = reviewService;
     }
 
     @GetMapping
@@ -41,7 +44,7 @@ public class ReviewRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
         } else {
-            return new ResponseEntity(reviewRepository.save(review), HttpStatus.CREATED);
+            return new ResponseEntity(reviewService.processNewReview(review), HttpStatus.CREATED);
         }
     }
 
