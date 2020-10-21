@@ -83,33 +83,15 @@ const FoodChainShow = (props) => {
     }
 
     return (
-        <div>
-            <div>
-                <button onClick={openModal}>Make A Review</button>
-                <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal" >
-                    <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <input type="text" name="comment" placeholder="comment" ref={register} />
-                        <input type="hidden" name="rating" value={rating} ref={register}/>                       
-                        <StarRating getRating={getRating}/>
-                        <input type="submit" />
-                        <button onClick={closeModal}>close</button>
-                    </form>
-                </Modal>
-            </div>
+        <div class="chain-div">
             {notFoundMessage}
-            <h1>Look at this amazing food chain? Don't you want to eat here.</h1>
-            <br></br>
-            <h3>Restaurant Name:</h3>
-            <ul>
-                <li>{foodChain.name}</li>
-            </ul>
+            <br />
+            <div class="chain-name">
+                <p class="chain-title">{foodChain.name}</p>
+            </div>
+            <br />
             <img src={foodChain.imgUrl}></img>
+            <hr />
             <p>Description:</p>
             <ul>
                 <li>{foodChain.description}</li>
@@ -122,8 +104,28 @@ const FoodChainShow = (props) => {
             <ul>
                 {offersDelivery}
             </ul>
-            <p>List of Reviews:</p>
             {reviews}
+            <br />
+            <div class="button-container">
+                <div class="button-center-stabilizer">
+                    <button class="create-review" onClick={openModal}>Add A Review</button>
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onAfterOpen={afterOpenModal}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal" >
+                        <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <input type="text" name="comment" placeholder="comment" ref={register} />
+                            <input type="hidden" name="rating" value={rating} ref={register}/>                       
+                            <StarRating getRating={getRating}/>
+                            <input type="submit" />
+                            <button onClick={closeModal}>close</button>
+                        </form>
+                    </Modal>
+                </div>
+            </div>
         </div>
     );
 }

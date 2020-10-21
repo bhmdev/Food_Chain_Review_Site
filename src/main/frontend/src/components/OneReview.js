@@ -5,13 +5,14 @@ const OneReview = (props) => {
     const reviewRating = props.rating;
 
     return (
-        <div>
-            <hr />
-            <p><b>Customer Review</b></p>
-            <ul>
-                <li>{reviewComment}</li>
-                <li>{reviewRating}</li>
-            </ul>
+        <div class="review-wrapper-div">
+            <div class="review-div">
+                <p><b>Customer Review</b></p>
+                <ul>
+                    <li>{reviewComment}</li>
+                    <li>{reviewRating}</li>
+                </ul>
+            </div>
         </div>
     )
 }
