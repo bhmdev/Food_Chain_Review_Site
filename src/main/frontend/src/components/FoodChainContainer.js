@@ -40,7 +40,7 @@ const FoodChainsContainer = () => {
     return (
       <div id="center-index" key={foodChain.id} className="square">
         <Link to={`/foodchains/${foodChain.id}`}><img src={foodChain.imgUrl}
-                                                      alt={`picture of ${foodChain.name}`}/></Link>
+         alt={`picture of ${foodChain.name}`}/></Link>
         <h3>{foodChain.name}</h3>
         {starRatings}
       </div>
