@@ -22,14 +22,14 @@ const FoodChainsContainer = () => {
   let foodChainList = foodChains.map(foodChain => {
 
     let starRatings;
-    if(foodChain.rating != null) {
+    if (foodChain.rating != null) {
       starRatings = <StarRatings
         rating={foodChain.rating}
         starDimension="30px"
         starSpacing="15px"
         starRatedColor="gold"
       />
-    }else {
+    } else {
       starRatings = <StarRatings
         rating={0}
         starDimension="30px"
@@ -38,9 +38,9 @@ const FoodChainsContainer = () => {
     }
 
     return (
-      <div id="center-index" key={foodChain.id}>
-        <Link to={`/foodchains/${foodChain.id}`}><img src={foodChain.imgUrl} height="600" width="600"
-         alt="slide 1"/></Link>
+      <div id="center-index" key={foodChain.id} className="square">
+        <Link to={`/foodchains/${foodChain.id}`}><img src={foodChain.imgUrl}
+                                                      alt={`picture of ${foodChain.name}`}/></Link>
         <h3>{foodChain.name}</h3>
         {starRatings}
       </div>
@@ -86,7 +86,10 @@ const FoodChainsContainer = () => {
   return (
     <>
       <div id="food-chain-carousel-container">
-        <h1 id="main-header">Write Something Captivating Here</h1>
+        <div id="main-text">
+          <h1 id="main-header">Your Favorite Food Chains</h1>
+          <h3>Don't forget to leave a review</h3>
+        </div>
         <Slider {...settings}>
           {foodChainList}
         </Slider>

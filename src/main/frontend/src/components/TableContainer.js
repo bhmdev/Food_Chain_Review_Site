@@ -15,7 +15,7 @@ const TableContainer = () => {
   return (
     <>
       <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} id="table-container">
+        <Tabs value={value} onChange={handleChange} id="table-container" TabIndicatorProps={{style: {background: '#F4976C'}}}>
           <Tab label="Food Chains Table" />
           <Tab label="Reviews Table" />
         </Tabs>
