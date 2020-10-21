@@ -34,7 +34,7 @@ public class FoodChainSeeder {
             chipotle.setDelivery(true);
             chipotle.setDescription("Quintessential TexMex craving satisfaction");
             chipotle.setImgUrl(
-                "https://images.unsplash.com/photo-1568106690101-fd6822e876f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1490&q=80");
+                "https://mk0dapulseasrqgbt62s.kinstacdn.com/wp-content/uploads/2019/10/chipotle-next-kitchen-dapulse.jpg");
             foodChainList.add(chipotle);
 
             FoodChain mcdonalds = new FoodChain();
@@ -75,7 +75,7 @@ public class FoodChainSeeder {
             chickfila.setDelivery(false);
             chickfila.setDescription("Chick-fil-A Chicken Sandwich");
             chickfila.setImgUrl(
-                "https://cdn0.wideopeneats.com/wp-content/uploads/2017/10/chick-fil-a-menu-items.png");
+                "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2018/06/chick-fil-a-spicy-deluxe-fries.jpg?fit=1024%2C750&ssl=1");
             foodChainList.add(chickfila);
 
             for (FoodChain foodChain : foodChainList) {

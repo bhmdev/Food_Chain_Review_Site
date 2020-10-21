@@ -1,6 +1,19 @@
+:root {
+    --yellow: #FBE8A6;
+    --peach: #F4976C;
+    --dark-blue: #303C8C;
+    --medium-blue: #B4DFE5;
+    --light-blue: #D2FDFF;
+}
+
+body {
+    background-image: url();
+}
+
 .slick-prev:before,
 .slick-next:before {
-    color: black;
+    font-size: 1.7rem;
+    color: var(--dark-blue);
 }
 
 .slick-slide {
@@ -11,12 +24,14 @@
     margin: 0 2em;
 }
 
-#center-index {
+#center-index, #main-text {
     text-align: center;
+    outline: none;
 }
 
 #center-index h3 {
-    font-family: fantasy;
+    font-family: sans-serif;
+    color: var(--dark-blue)
 }
 
 #center-index img {
@@ -26,9 +41,20 @@
 }
 
 #main-header {
-    text-align: center;
-    font-family: sans-serif;
-    margin: 50px 0;
+    font-size: 3rem;
+    font-family: ui-serif;
+    margin-top: 50px;
+    color: var(--peach);
+}
+
+#main-text {
+    margin-bottom: 50px;
+    color: var(--medium-blue)
+}
+
+#menu-header {
+    font-size: 1.2rem;
+    font-weight: 900;
 }
 
 #food-chain-carousel-container {
@@ -39,4 +65,36 @@
 #table-container {
     background-color: white;
     color: black;
+    font-weight: 600;
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
+.top-bar, .top-bar ul {
+    background-color: var(--dark-blue);
+}
+
+#add-food-chain-btn {
+    background-color: var(--peach);
+}
+
+#add-food-chain-btn:hover {
+    background-color: #FF8C76;
+}
+
+.square {
+    height: 380px;
+    width: 450px;
+}
+
+.square img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.star-container {
+    margin-bottom: 50px;
+    border: none;
 }
