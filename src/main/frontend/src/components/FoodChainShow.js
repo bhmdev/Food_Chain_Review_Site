@@ -89,7 +89,6 @@ const FoodChainShow = (props) => {
 
     return (
         <div class="chain-div">
-        <div>
             <div>
                 <button onClick={openModal}>Make A Review</button>
                 <Modal
