@@ -6,10 +6,6 @@
     --light-blue: #D2FDFF;
 }
 
-body {
-    background-image: url();
-}
-
 .slick-prev:before,
 .slick-next:before {
     font-size: 1.7rem;
@@ -97,4 +93,8 @@ a:hover {
 .star-container {
     margin-bottom: 50px;
     border: none;
+}
+
+.error {
+    color: red;
 }

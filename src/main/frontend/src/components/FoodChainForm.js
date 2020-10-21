@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import _ from "lodash"
+import { Redirect } from 'react-router-dom'
 
 const FoodChainForm = props => {
   const emptyFoodChain = {
@@ -10,11 +11,13 @@ const FoodChainForm = props => {
   }
   const [newFoodChain, setNewFoodChain] = useState(emptyFoodChain);
   const [errors, setErrors] = useState({})
+  const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [newFoodChainId, setNewFoodChainId] = useState(null)
 
   let requiredFields = {
     name: "Name",
-    delivery: "delivery",
-    imgUrl: "imgUrl"
+    delivery: "Delivery",
+    imgUrl: "Image Url"
   }
 
   const handleInputChange = event => {
@@ -53,16 +56,28 @@ const FoodChainForm = props => {
         body: JSON.stringify(payload),
         headers: {"Content-Type" : "application/json"}
       })
-        .then(result => setNewFoodChain(emptyFoodChain))
+        .then(result => result.json())
+        .then(result => {
+          setNewFoodChainId(result.id)
+          setShouldRedirect(true)
+        })
         .catch(errors => console.log(errors))
     } else setErrors(formErrors)
+  }
+
+  if(shouldRedirect) {
+    return <Redirect to={`/foodchains/${newFoodChainId}`} />
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit} className="form callout medium-8 cell">
       <h2>Food Chain Form</h2>
-      <p className="error">{errors.name}</p>
+        <div className="error">
+          <p>{errors.name}</p>
+          <p>{errors.delivery}</p>
+          <p>{errors.imgUrl}</p>
+        </div>
       <label>Food Chain Name
         <input
           type="text"
@@ -72,7 +87,7 @@ const FoodChainForm = props => {
           onChange={handleInputChange}
         />
       </label>
-      <label htmlFor= "delivery">Delivery
+        <label htmlFor= "delivery">Delivery
         <select name="delivery"
           value={newFoodChain.delivery}
           onChange={handleInputChange}>
@@ -81,7 +96,7 @@ const FoodChainForm = props => {
           <option value="N">No</option>
          </select>
       </label>
-      <label>Description
+        <label>Description
         <input
           type="text"
           name="description"
