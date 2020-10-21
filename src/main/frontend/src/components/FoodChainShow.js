@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import OneReview from './OneReview.js'
 import StarRating from './StarRatings';
 
+Modal.setAppElement('#app')
 const FoodChainShow = (props) => {
     let foodChainId = props.match.params.id;
     const [foodChain, setFoodChain] = useState([])
@@ -24,7 +25,7 @@ const FoodChainShow = (props) => {
                 setFoodChain(foodChain)
                 setReviewList(foodChain.reviewList)
             })
-    }, []);
+    }, [reviewList]);
 
     let notFoundMessage;
     if (!pageFound) {
