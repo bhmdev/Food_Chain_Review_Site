@@ -70,7 +70,10 @@ const FoodChainShow = (props) => {
         headers: {"Content-Type" : "application/json"}
       })
       .then(result => result.json())
-      .then(result => setReviewList([...reviewList, result]))
+      .then(result => {
+        setReviewList([...reviewList, result])
+        closeModal()
+    })
       .catch(errors => console.log(errors))
     }
       
@@ -98,7 +101,6 @@ const FoodChainShow = (props) => {
                         <input type="hidden" name="rating" value={rating} ref={register}/>                       
                         <StarRating getRating={getRating}/>
                         <input type="submit" />
-                        <button onClick={closeModal}>close</button>
                     </form>
                 </Modal>
             </div>
