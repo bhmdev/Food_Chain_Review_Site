@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 function StarRating({count, value, 
     inactiveColor='grey',
     size=24,
-    activeColor='peachpuff', onChange}) {
+    activeColor='0000ff', onChange}) {
 
   const stars = Array.from({length: count}, () => '★')
 
@@ -22,7 +22,9 @@ function StarRating({count, value,
             key={index}
             style={{color: style, width:size, height:size, fontSize: size}}
             onMouseOver={()=>handleChange(index)}>{s}</span>
-        )})}
+        )
+      })}
+      {value}
     </div>
   )
 }
@@ -40,7 +42,7 @@ function StarRating2(props) {
        count={5}
        size={40}
        value={rating}
-       activeColor ={'peachpuff'}
+       activeColor ={'blue'}
        inactiveColor={'grey'}
        onChange={handleChange} />
     </div>
