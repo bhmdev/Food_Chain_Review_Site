@@ -1,7 +1,6 @@
 package com.launchacademy.reviews.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +12,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +31,7 @@ public class Review {
   @Column(name="id", nullable=false, unique=true)
   private Integer id;
 
+  @NotBlank
   @Column
   private String comment;
 
@@ -38,6 +41,7 @@ public class Review {
   @Column(nullable = false)
   private Integer rating;
 
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "food_chain_id", nullable = false)
   @JsonIgnoreProperties("reviewList")
