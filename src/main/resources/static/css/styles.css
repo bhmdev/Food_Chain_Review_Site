@@ -142,9 +142,14 @@ button.create-review {
 }
 
 .callout {
-    margin: auto;
+    margin: 150px auto;
+    background-color: #303C8C;
+    color: peachpuff;
+    font-size: 600;
 }
 
 label {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: peachpuff;
 }
