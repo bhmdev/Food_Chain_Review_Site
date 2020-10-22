@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import OneReview from './OneReview.js';
 import StarRating from './StarRatings';
 import './App.css'
+import starRatings from 'react-star-ratings/build/star-ratings';
+import StarRatings from 'react-star-ratings';
 
 Modal.setAppElement('#app')
 const FoodChainShow = (props) => {
@@ -87,12 +89,31 @@ const FoodChainShow = (props) => {
         setRating(value)
     }
 
+    let overallRating;
+    if (foodChain.rating != null) {
+        overallRating = <StarRatings
+            rating={foodChain.rating}
+            starDimension="30px"
+            starSpacing="15px"
+            starRatedColor="gold"
+        />
+    } else {
+        overallRating = <StarRatings
+            rating={0}
+            starDimension="30px"
+            starSpacing="15px"
+        />
+    }
+
     return (
         <div className="chain-div">
             {notFoundMessage}
             <br />
-            <div className="chain-name">
-                <p className="chain-title">{foodChain.name}</p>
+            <div class="title-contents">
+                <p class="chain-title">{foodChain.name}</p>
+            </div>
+            <div class="title-contents">
+                {overallRating}
             </div>
             <br />
             <img src={foodChain.imgUrl}></img>
@@ -101,15 +122,10 @@ const FoodChainShow = (props) => {
             <ul>
                 <li>{foodChain.description}</li>
             </ul>
-            <p>Rating:</p>
-            <ul>
-                <li>{foodChain.rating}</li>
-            </ul>
             <p>Did they offer delivery in the time before COVID?</p>
             <ul>
                 {offersDelivery}
             </ul>
-            {reviews}
             <br />
             <div className="button-container">
                 <div className="button-center-stabilizer">
@@ -129,9 +145,11 @@ const FoodChainShow = (props) => {
                         <div className="sbutton">
                         <input className="button" type="submit"/></div>
                     </form>
-                </Modal>
+                    </Modal>
                 </div>
             </div>
+            <br />
+            {reviews}
         </div>
     );
 }

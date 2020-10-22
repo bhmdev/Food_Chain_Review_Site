@@ -91,7 +91,6 @@ a:hover {
 }
 
 .star-container {
-    margin-bottom: 50px;
     border: none;
 }
 
@@ -99,7 +98,12 @@ a:hover {
     color: red;
 }
 
-div.chain-name {
+div.button-center-stabilizer {
+    align-items: center;
+    text-align: center;
+}
+
+div.title-contents {
     text-align: center;
     text-size-adjust: 200%;
 }
