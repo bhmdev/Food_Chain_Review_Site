@@ -32,12 +32,6 @@ const NavBar = (props) => {
                 <button type="button" className="button" id="add-food-chain-btn">Add a Food Chain</button>
               </Link>
             </li>
-            <li>
-              <input type="search" placeholder="Search"/>
-            </li>
-            <li>
-              <button type="button" className="button">Search</button>
-            </li>
           </ul>
         </div>
       </div>

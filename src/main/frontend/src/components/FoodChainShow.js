@@ -80,7 +80,7 @@ const FoodChainShow = (props) => {
     })
       .catch(errors => console.log(errors))
     }
-      
+
     const reviews = reviewList.map(singleReview => {
         return <OneReview key={singleReview.id} comment={singleReview.comment} rating={singleReview.rating}/>
     })
@@ -109,26 +109,28 @@ const FoodChainShow = (props) => {
         <div className="chain-div">
             {notFoundMessage}
             <br />
-            <div class="title-contents">
-                <p class="chain-title">{foodChain.name}</p>
+            <div className="title-contents">
+                <p className="chain-title">{foodChain.name}</p>
             </div>
-            <div class="title-contents">
+            <div className="title-contents">
                 {overallRating}
             </div>
             <br />
             <br />
-            <div class="show-image-wrapper">
-                <img class="show-image" src={foodChain.imgUrl}></img>
+            <div className="show-image-wrapper">
+                <img className="show-image" src={foodChain.imgUrl}></img>
             </div>
             <br />
-            <p>Description:</p>
-            <ul>
+            <div id="show-page-description">
+              <h5><b>Description:</b></h5>
+              <ul>
                 <li>{foodChain.description}</li>
-            </ul>
-            <p>Did they offer delivery in the time before COVID?</p>
-            <ul>
+              </ul>
+              <h6><b>Did they offer delivery in the time before COVID?</b></h6>
+              <ul>
                 {offersDelivery}
-            </ul>
+              </ul>
+           </div>
             <br />
             <div className="button-container">
                 <div className="button-center-stabilizer">

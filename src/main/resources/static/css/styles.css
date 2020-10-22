@@ -160,6 +160,13 @@ button.create-review {
     margin-left: 5px;
     margin-right: 5px;
     padding: 10px 10px;
+    width: 150px;
+    height: 50px;
+}
+
+button.create-review:hover {
+    color: var(--light-blue);
+    background-color: var(--peach);
 }
 
 #food-chain-form {
@@ -177,4 +184,16 @@ label {
     font-size: 1.3rem;
     font-weight: 500;
     color: peachpuff;
+}
+
+#show-page-description {
+    width: 35%;
+    padding: 15px;
+    margin: auto;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+#show-page-description li {
+    list-style-type: none;
 }
