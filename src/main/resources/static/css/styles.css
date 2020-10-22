@@ -91,12 +91,16 @@ a:hover {
 }
 
 .star-container {
-    margin-bottom: 50px;
     border: none;
 }
 
 .error {
     color: red;
+}
+
+div.button-center-stabilizer {
+    align-items: center;
+    text-align: center;
 }
 
 div.chain-name {

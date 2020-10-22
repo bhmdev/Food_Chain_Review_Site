@@ -109,7 +109,6 @@ const FoodChainShow = (props) => {
             <ul>
                 {offersDelivery}
             </ul>
-            {reviews}
             <br />
             <div class="button-container">
                 <div class="button-center-stabilizer">
@@ -129,9 +128,11 @@ const FoodChainShow = (props) => {
                         <div className="sbutton">
                         <input className="button" type="submit"/></div>
                     </form>
-                </Modal>
+                    </Modal>
                 </div>
             </div>
+            <br />
+            {reviews}
         </div>
     );
 }
