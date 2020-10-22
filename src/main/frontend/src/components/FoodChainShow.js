@@ -3,9 +3,8 @@ import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import OneReview from './OneReview.js';
 import StarRating from './StarRatings';
-import './App.css'
-import starRatings from 'react-star-ratings/build/star-ratings';
 import StarRatings from 'react-star-ratings';
+import './App.css'
 
 Modal.setAppElement('#app')
 const FoodChainShow = (props) => {
@@ -13,6 +12,7 @@ const FoodChainShow = (props) => {
     const [foodChain, setFoodChain] = useState([])
     const [pageFound, setPageFound] = useState(true)
     const [reviewList, setReviewList] = useState([])
+    const [errors, setErrors] = useState({})
 
     useEffect(() => {
         fetch(`/api/v1/foodchains/${foodChainId}`)
@@ -66,6 +66,13 @@ const FoodChainShow = (props) => {
     function closeModal() {
         setIsOpen(false);
     }
+
+
+    let requiredReviewFields = {
+        comment: "Comment",
+        rating: "Rating"
+    }
+    
     const [rating, setRating] = useState(0)
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {fetch('/api/v1/reviews/', {
@@ -104,6 +111,11 @@ const FoodChainShow = (props) => {
             starSpacing="15px"
         />
     }
+
+    // let blankCommentError;
+    // if () {
+    //     blankCommentError = "Please write a comment for your review!"
+    // }
 
     return (
         <div className="chain-div">

@@ -30,7 +30,6 @@ const FoodChainForm = props => {
 
   const clearForm = () => {
     setNewFoodChain(emptyFoodChain);
-    console.log("clear form")
     setErrors({})
   }
 
@@ -45,7 +44,6 @@ const FoodChainForm = props => {
         }
       }
     }
-    console.log("submitting?")
 
     let payloadDelivery = newFoodChain.delivery == "Y" ? "true" : "false"
 
