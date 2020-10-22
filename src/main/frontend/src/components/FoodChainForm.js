@@ -30,6 +30,8 @@ const FoodChainForm = props => {
 
   const clearForm = () => {
     setNewFoodChain(emptyFoodChain);
+    console.log("clear form")
+    setErrors({})
   }
 
   const handleSubmit = (event) => {
@@ -43,6 +45,7 @@ const FoodChainForm = props => {
         }
       }
     }
+    console.log("submitting?")
 
     let payloadDelivery = newFoodChain.delivery == "Y" ? "true" : "false"
 
@@ -86,9 +89,9 @@ const FoodChainForm = props => {
   }
 
   return (
-    <div>
+    <div id="food-chain-form">
       <form onSubmit={handleSubmit} className="form callout medium-8 cell">
-      <h2>Food Chain Form</h2>
+      <h2 id="food-chain-header">Add a Food Chain</h2>
         <div className="error">
           {duplicateError}
           <p>{errors.name}</p>
@@ -133,7 +136,7 @@ const FoodChainForm = props => {
       </label>
       <div className="button-group">
         <input className="button" type="submit" value="Submit" />
-        <button className="button" id="clear-button" value="Clear Form" onClick={clearForm}>Clear</button>
+        <input type="button" className="button" id="clear-button" value="Clear Form" onClick={clearForm}/>
       </div>
     </form>
   </div>

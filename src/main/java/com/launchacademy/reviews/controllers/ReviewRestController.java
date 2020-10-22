@@ -26,7 +26,7 @@ public class ReviewRestController {
 
     @GetMapping
     public Iterable<Review> displayReviews() {
-        return reviewRepository.findAll();
+        return reviewRepository.findAllByOrderById();
     }
 
     @GetMapping("/{id}")
@@ -62,7 +62,7 @@ public class ReviewRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
         } else {
-            reviewRepository.delete(review);
+            reviewService.processDeletion(review);
             return new ResponseEntity(HttpStatus.OK);
         }
     }

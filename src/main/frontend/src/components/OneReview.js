@@ -22,10 +22,10 @@ const OneReview = (props) => {
     }
 
     return (
-        <div class="review-wrapper-div">
-            <div class="review-div">
+        <div className="review-wrapper-div">
+            <div className="review-div">
                 <p><b>Customer Review</b></p>
-                <p>{starRating}</p>
+                {starRating}
                 <p>{reviewComment}</p>
             </div>
         </div>
