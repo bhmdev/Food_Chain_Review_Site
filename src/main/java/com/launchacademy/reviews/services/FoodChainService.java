@@ -20,10 +20,14 @@ public class FoodChainService {
 
   public FoodChain setFoodChainRating(FoodChain foodChain) {
     List<Review> reviewList = foodChain.getReviewList();
-    List<Integer> ratings = reviewList.stream().map(Review::getRating)
-        .collect(Collectors.toList());
-    Double average = ratings.stream().mapToDouble(Integer::doubleValue).average().getAsDouble();
-    foodChain.setRating(average);
+    if(!reviewList.isEmpty()) {
+      List<Integer> ratings = reviewList.stream().map(Review::getRating)
+            .collect(Collectors.toList());
+      Double average = ratings.stream().mapToDouble(Integer::doubleValue).average().getAsDouble();
+      foodChain.setRating(average);
+    }else {
+      foodChain.setRating(null);
+    }
     return foodChainRepository.save(foodChain);
   }
 

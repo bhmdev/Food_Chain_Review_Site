@@ -31,7 +31,7 @@ public class FoodChainRestController {
 
     @GetMapping
     public Iterable<FoodChain> displayFoodChains() {
-        return foodChainRepository.findAll();
+        return foodChainRepository.findAllByOrderByName();
     }
 
     @GetMapping("/{id}")

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FoodChainRepository extends CrudRepository<FoodChain, Integer> {
   FoodChain findByName(String name);
+  Iterable<FoodChain> findAllByOrderByName();
 }
