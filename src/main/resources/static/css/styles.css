@@ -113,14 +113,35 @@ div.chain-div {
 }
 
 div.review-wrapper-div {
-    padding-top: 9px;
-    padding-bottom: 9px;
-}
-
-div.review-div {
     border: 3px solid var(--medium-blue);
     border-radius: 20px;
     box-shadow: 5px 5px 3px var(--light-blue);
+    margin-bottom: 20px;
+}
+
+div.review-div {
+    padding-top: 6px;
+    padding-bottom: 9px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+div.show-image-wrapper {
+    text-align: center;
+}
+
+div.carousel-image-wrapper {
+    text-align: center;
+}
+
+img.show-image {
+    margin: 0 auto;
+    max-height: 400px;
+}
+
+img.carousel-image {
+    margin: 0 auto;
+    max-height: 250px;
 }
 
 p.chain-title {

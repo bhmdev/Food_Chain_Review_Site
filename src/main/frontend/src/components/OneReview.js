@@ -24,7 +24,7 @@ const OneReview = (props) => {
     return (
         <div className="review-wrapper-div">
             <div className="review-div">
-                <p><b>Customer Review</b></p>
+                <h4><b>Customer Review</b></h4>
                 {starRating}
                 <p>{reviewComment}</p>
             </div>

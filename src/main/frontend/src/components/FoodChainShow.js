@@ -116,8 +116,11 @@ const FoodChainShow = (props) => {
                 {overallRating}
             </div>
             <br />
-            <img src={foodChain.imgUrl}></img>
-            <hr />
+            <br />
+            <div class="show-image-wrapper">
+                <img class="show-image" src={foodChain.imgUrl}></img>
+            </div>
+            <br />
             <p>Description:</p>
             <ul>
                 <li>{foodChain.description}</li>

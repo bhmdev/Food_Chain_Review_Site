@@ -39,8 +39,10 @@ const FoodChainsContainer = () => {
 
     return (
       <div id="center-index" key={foodChain.id} className="square">
-        <Link to={`/foodchains/${foodChain.id}`}><img src={foodChain.imgUrl}
-         alt={`picture of ${foodChain.name}`}/></Link>
+        <div class="carousel-image-wrapper">
+          <Link to={`/foodchains/${foodChain.id}`}><img src={foodChain.imgUrl} class="carousel-image"
+          alt={`picture of ${foodChain.name}`}/></Link>
+        </div>
         <h3>{foodChain.name}</h3>
         {starRatings}
       </div>
