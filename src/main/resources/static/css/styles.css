@@ -20,7 +20,7 @@
     margin: 0 2em;
 }
 
-#center-index, #main-text {
+#center-index, #main-text, #food-chain-header {
     text-align: center;
     outline: none;
 }
@@ -135,4 +135,16 @@ button.create-review {
     margin-left: 5px;
     margin-right: 5px;
     padding: 10px 10px;
+}
+
+#food-chain-form {
+    margin: auto;
+}
+
+.callout {
+    margin: auto;
+}
+
+label {
+    font-size: 1.2rem;
 }

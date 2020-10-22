@@ -26,7 +26,7 @@ const FoodChainShow = (props) => {
                 setFoodChain(foodChain)
                 setReviewList(foodChain.reviewList)
             })
-    }, [reviewList]);
+    }, [reviewList.length]);
 
     let notFoundMessage;
     if (!pageFound) {
@@ -58,7 +58,7 @@ const FoodChainShow = (props) => {
     }
 
     function afterOpenModal() {
-        subtitle.style.color = '#f00';
+        subtitle.style.color = 'black';
     }
 
     function closeModal() {
@@ -88,11 +88,11 @@ const FoodChainShow = (props) => {
     }
 
     return (
-        <div class="chain-div">
+        <div className="chain-div">
             {notFoundMessage}
             <br />
-            <div class="chain-name">
-                <p class="chain-title">{foodChain.name}</p>
+            <div className="chain-name">
+                <p className="chain-title">{foodChain.name}</p>
             </div>
             <br />
             <img src={foodChain.imgUrl}></img>
@@ -111,21 +111,21 @@ const FoodChainShow = (props) => {
             </ul>
             {reviews}
             <br />
-            <div class="button-container">
-                <div class="button-center-stabilizer">
-                    <button class="create-review" onClick={openModal}>Add A Review</button>
+            <div className="button-container">
+                <div className="button-center-stabilizer">
+                    <button className="create-review" onClick={openModal}>Add A Review</button>
                     <Modal
                     isOpen={modalIsOpen}
                     onAfterOpen={afterOpenModal}
                     onRequestClose={closeModal}
                     style={customStyles}
                     contentLabel="Example Modal">
-                    <h2 ref={_subtitle => (subtitle = _subtitle)}>Review Form</h2>
+                    <h2 ref={_subtitle => (subtitle = _subtitle)} id="review-form-header">Review Form</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <input type="text" name="comment" placeholder="comment" ref={register} />
-                        <input type="hidden" name="rating" value={rating} ref={register}/>                       
                         <StarRating getRating={getRating}/>
                         <br></br>
+                        <input type="text" name="comment" placeholder="Comment" ref={register} />
+                        <input type="hidden" name="rating" value={rating} ref={register}/>
                         <div className="sbutton">
                         <input className="button" type="submit"/></div>
                     </form>

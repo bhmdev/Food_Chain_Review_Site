@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
+    Iterable<Review> findAllByOrderById();
+
 }
 
 
