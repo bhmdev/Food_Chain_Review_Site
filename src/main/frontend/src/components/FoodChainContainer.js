@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import StarRatings from 'react-star-ratings';
 import Slider from "react-slick";
+import SearchBar from "./SearchBar"
 
 const FoodChainsContainer = () => {
   const [foodChains, setFoodChains] = useState([]);
@@ -91,6 +92,9 @@ const FoodChainsContainer = () => {
         <div id="main-text">
           <h1 id="main-header">Your Favorite Food Chains</h1>
           <h3>Don't forget to leave a review</h3>
+          <div id="search-bar">
+            <SearchBar/>
+          </div>
         </div>
         <Slider {...settings}>
           {foodChainList}
