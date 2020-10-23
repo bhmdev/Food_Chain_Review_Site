@@ -110,7 +110,7 @@ div.title-contents {
 }
 
 div.chain-div {
-    padding: 30px;   
+    padding: 30px;
 }
 
 div.review-wrapper-div {
@@ -200,3 +200,12 @@ label {
     list-style-type: none;
 }
 
+#search-bar {
+    width: 40%;
+    margin: auto
+}
+
+#search-bar {
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
